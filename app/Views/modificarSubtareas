@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar Subtarea</title>
+    <link rel="stylesheet" href="<?= base_url('css/style.css') ?>"> <!-- opcional -->
+</head>
+<body>
+
+<h2>Modificar Subtarea</h2>
+
+<form action="<?= base_url('subtareas/actualizar') ?>" method="post">
+ 
+    <?= csrf_field() ?>
+
+    <input type="hidden" name="id" value="<?= esc($subtarea['id']) ?>">
+
+    <div>
+        <label for="descripcion">Descripción:</label><br>
+        <textarea id="descripcion" name="descripcion" rows="4" cols="50" required><?= esc($subtarea['descripcion']) ?></textarea>
+    </div>
+
+    <div>
+        <label for="prioridad">Prioridad:</label><br>
+        <select id="prioridad" name="prioridad" required>
+            <option value="Baja" <?= ($subtarea['prioridad'] == 'Baja') ? 'selected' : '' ?>>Baja</option>
+            <option value="Media" <?= ($subtarea['prioridad'] == 'Media') ? 'selected' : '' ?>>Media</option>
+            <option value="Alta" <?= ($subtarea['prioridad'] == 'Alta') ? 'selected' : '' ?>>Alta</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="fecha_vencimiento">Fecha de vencimiento:</label><br>
+        <input type="date" id="fecha_vencimiento" name="fecha_vencimiento" value="<?= esc($subtarea['fecha_vencimiento']) ?>" required>
+    </div>
+
+    <br>
+
+    <button type="submit">Guardar cambios</button>
+    <a href="<?= base_url('tareas/compartidas') ?>"><button type="button">Cancelar</button></a>
+</form>
+
+</body>
+</html>
